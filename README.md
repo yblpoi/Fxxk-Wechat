@@ -1,6 +1,6 @@
 # Fxxk-Wechat
 
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/yblpoi/Fxxk-Wechat)![](https://img.shields.io/github/downloads/yblpoi/Fxxk-Wechat/latest/total) 
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/yblpoi/Fxxk-Wechat)![](https://img.shields.io/github/downloads/yblpoi/Fxxk-Wechat/latest/total)
 
 一个简单粗暴的安卓[**Magisk**](https://github.com/topjohnwu/Magisk)模块。用于清理某个特别好用的国民级聊天软件。
 
@@ -42,7 +42,7 @@
 具体使用方法如下：
 
 - 备份必要的数据，数据无价。
-- 安装 [**Magisk**](https://github.com/topjohnwu/Magisk) 
+- 安装 [**Magisk**](https://github.com/topjohnwu/Magisk)
 - 在 [**Release**](https://github.com/yblpoi/Fxxk-Wechat/releases) 界面下载最新版本模块
 - 打开面具刷入模块。请仔细阅读刷入前的提示。如果您决定刷入，轻轻按一下**音量+**就可以完成刷入了。
 - 重启手机。
@@ -52,10 +52,11 @@
 ## 模块文件说明
 
 整个模块的文件结构如下
+
 ```
 .
 ├── customize.sh 					#安装脚本
-├── files							#配置文件存放目录
+├── files						#配置文件存放目录
 │   └── FUCK-WECHAT.conf
 ├── Fxxk-wechat.sh					#主要功能脚本
 ├── META-INF						#面具模块必需文件
@@ -65,7 +66,7 @@
 │               ├── update-binary
 │               └── updater-script
 ├── module.prop						#模块信息
-├── Run_FUCK_WECHAT.sh				#控制脚本
+├── Run_FUCK_WECHAT.sh					#控制脚本
 └── service.sh						#服务进程脚本
 ```
 
