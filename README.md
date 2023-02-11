@@ -2,7 +2,7 @@
 
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/yblpoi/Fxxk-Wechat)![](https://img.shields.io/github/downloads/yblpoi/Fxxk-Wechat/latest/total) 
 
-一个简单粗暴的安卓**[Magisk](https://github.com/topjohnwu/Magisk)**模块。用于清理某个特别好用的国民级聊天软件。
+一个简单粗暴的安卓[**Magisk**](https://github.com/topjohnwu/Magisk)模块。用于清理某个特别好用的国民级聊天软件。
 
 我不知道为什么一个功能单一的聊天软件，应用大小有**665MB**。在我登录两天左右，用户数据达到了惊人的**2.3GB**。
 
@@ -18,7 +18,7 @@
 
 如果您使用的是尊贵的苹果，抑或是某些不主张用户刷机的品牌的手机。建议您停止阅读，因为这个模块和您没有任何的关系。也请您不要询问怎么给您的手机使用此模块。这样会导致时间的浪费。
 
-如果您了解安卓刷机，或者已经享受刷机带来的乐趣，那么欢迎您使用我的模块。也欢迎您**[创建议题](https://github.com/yblpoi/Fxxk-Wechat/issues)**，一起完善这个项目。
+如果您了解安卓刷机，或者已经享受刷机带来的乐趣，那么欢迎您使用我的模块。也欢迎您[**创建议题**](https://github.com/yblpoi/Fxxk-Wechat/issues)，一起完善这个项目。
 
 由于咱并非计算机专业，如果在代码方面有任何优化的建议，也欢迎提交PR。
 
@@ -42,7 +42,7 @@
 具体使用方法如下：
 
 - 备份必要的数据，数据无价。
-- 安装 **[Magisk](https://github.com/topjohnwu/Magisk)**
+- 安装 [**Magisk**](https://github.com/topjohnwu/Magisk) 
 - 在 [**Release**](https://github.com/yblpoi/Fxxk-Wechat/releases) 界面下载最新版本模块
 - 打开面具刷入模块。请仔细阅读刷入前的提示。如果您决定刷入，轻轻按一下**音量+**就可以完成刷入了。
 - 重启手机。
@@ -54,34 +54,20 @@
 整个模块的文件结构如下
 
 > .
->
 > ├── customize.sh 					#安装脚本
->
 > ├── files							#配置文件存放目录
->
 > │   └── FUCK-WECHAT.conf
->
 > ├── Fxxk-wechat.sh					#主要功能脚本
->
 > ├── META-INF						#面具模块必需文件
->
 > │   └── com
->
 > │       └── google
->
 > │           └── android
->
 > │               ├── update-binary
->
 > │               └── updater-script
->
 > ├── module.prop						#模块信息
->
 > ├── Run_FUCK_WECHAT.sh				#控制脚本
->
 > └── service.sh						#服务进程脚本
 >
-> 
 
 ### 对于配置文件目录的补充说明
 
