@@ -52,35 +52,22 @@
 ## 模块文件说明
 
 整个模块的文件结构如下
-
-> .
-> 
-> ├── customize.sh 					#安装脚本
-> 
-> ├── files							#配置文件存放目录
-> 
-> │   └── FUCK-WECHAT.conf
-> 
-> ├── Fxxk-wechat.sh					#主要功能脚本
-> 
-> ├── META-INF						#面具模块必需文件
-> 
-> │   └── com
-> 
-> │       └── google
-> 
-> │           └── android
-> 
-> │               ├── update-binary
-> 
-> │               └── updater-script
-> 
-> ├── module.prop						#模块信息
-> 
-> ├── Run_FUCK_WECHAT.sh				#控制脚本
-> 
-> └── service.sh						#服务进程脚本
-> 
+```
+.
+├── customize.sh 					#安装脚本
+├── files							#配置文件存放目录
+│   └── FUCK-WECHAT.conf
+├── Fxxk-wechat.sh					#主要功能脚本
+├── META-INF						#面具模块必需文件
+│   └── com
+│       └── google
+│           └── android
+│               ├── update-binary
+│               └── updater-script
+├── module.prop						#模块信息
+├── Run_FUCK_WECHAT.sh				#控制脚本
+└── service.sh						#服务进程脚本
+```
 
 ### 对于配置文件目录的补充说明
 
