@@ -11,11 +11,20 @@ PROCESS()
 	ps -ef | grep "Fxxk-wechat.sh" | grep -v grep | wc -l
 }
 
+# 检测微信是否位于前台
+
+ACTIVITY() 
+{
+	dumpsys activity a | grep 'topResumedActivity' | grep 'com.tencent.mm' | wc -l
+}
+
 while :
 do
 	if [[ ! -f $MODDIR/disable ]]; then
 		if [[ $(PROCESS) -eq 0 ]]; then
-			nohup sh $MODDIR/Fxxk-wechat.sh &
+			if [[ $(ACTIVITY) -eq 0 ]]; then 
+				nohup sh $MODDIR/Fxxk-wechat.sh &
+			fi
 		fi
 	else
 		if [[ $(PROCESS) -ne 0 ]]; then
