@@ -31,7 +31,7 @@ jobs:
           sudo rm -rf /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /opt/ghc
           sudo sed -i 's@//.*archive.ubuntu.com@//mirrors.ustc.edu.cn@g' /etc/apt/sources.list
           sudo -E apt-get -qq update
-          sudo -E apt-get -qq install git bzip2 unzip zip p7zip p7zip-full tree
+          sudo -E apt-get -qq install git bzip2 unzip zip p7zip p7zip-full
           sudo -E apt-get -qq autoremove --purge
           sudo -E apt-get -qq clean
           sudo mkdir -p /workdir
@@ -42,8 +42,6 @@ jobs:
         run: |
           git clone $REPO_URL -b $REPO_BRANCH Fxxk-Wechat
           ln -sf /workdir/Fxxk-Wechat $GITHUB_WORKSPACE/Fxxk-Wechat
-          mkdir -p output
-          ln -sf /workdir/output $GITHUB_WORKSPACE/output
 
       - name: SSH connection to Actions
         uses: P3TERX/ssh2actions@v1.0.0
@@ -56,7 +54,6 @@ jobs:
           cd Fxxk-Wechat
           echo 'Start Build Module'
           zip -r love-wechat.zip * -x '*.md' 
-          cp *.zip $GITHUB_WORKSPACE/output
           Get_Version=$(cat module.prop | grep "version" | grep -v "versionCode" | cut -f2 -d"=" )
           echo "MODULE_VERSION=$Get_Version" >> $GITHUB_ENV
           echo "status=success" >> $GITHUB_OUTPUT
@@ -65,7 +62,7 @@ jobs:
         id: organize
         if: steps.organize.outputs.status == 'success' && env.UPLOAD_MODULE == 'true'
         run: |
-          echo "MOD_DIR=$GITHUB_WORKSPACE/output" >> $GITHUB_ENV
+          echo "MOD_DIR=/workdir/Fxxk-Wechat" >> $GITHUB_ENV
           echo "status=success" >> $GITHUB_OUTPUT
 
       - name: Upload Module
@@ -92,4 +89,4 @@ jobs:
           name: ${{ env.OPNAME }}
           tag_name: ${{ steps.tag.outputs.release_tag }}
           body_path: release.txt
-          files: /output/*
+          files: /workdir/Fxxk-Wechat/*.zip
