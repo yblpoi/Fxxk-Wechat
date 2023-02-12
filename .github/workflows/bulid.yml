@@ -15,7 +15,6 @@ env:
   REPO_BRANCH: main
   UPLOAD_MODULE: true
   UPLOAD_RELEASE: true
-  TZ: Asia/Shanghai
 
 jobs:
   build:
@@ -35,7 +34,6 @@ jobs:
           sudo -E apt-get -qq install git bzip2 unzip zip p7zip p7zip-full tree
           sudo -E apt-get -qq autoremove --purge
           sudo -E apt-get -qq clean
-          sudo timedatectl set-timezone "$TZ"
           sudo mkdir -p /workdir
           sudo chown $USER:$GROUPS /workdir
 
@@ -94,4 +92,4 @@ jobs:
           name: ${{ env.OPNAME }}
           tag_name: ${{ steps.tag.outputs.release_tag }}
           body_path: release.txt
-          files: ${{ env.MOD_DIR }}/*
+          files: /output/*
