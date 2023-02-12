@@ -43,7 +43,7 @@ Print	"		"
 Print	"		建议备份内容为："
 Print	"			1. 重要的聊天数据"
 Print	"			2. 美好的回忆"
-Print	"		当然，本模块提供了反悔的机会，是否继续安装取决于你"
+Print	"		当然，本模块提供了反悔（取消安装）的机会"
 Print	"		"
 Print	"		(✓) 当前版本：" $(Get_Version)
 Print	"		"
@@ -56,8 +56,8 @@ Print	"		(i) 温馨提醒："
 Print	"			- 配置文件位于：模块目录 /file/FUCK-WECHAT.conf，老配置文件目前已经不再使用"
 Print	"			- 为了确保数据安全，最终决定配置文件不应放在一个不安全的目录由用户随意更改。如果您有需要的规则，请提交PR。"
 Print	"			- 编辑文件时请注意，不要将重要目录写进.conf文件，以防出现不必要的麻烦！"
-Print	"			- 编辑文件时请注意，不要将重要目录写进.conf文件，以防出现不必要的麻烦！"
-Print	"			- 编辑文件时请注意，不要将重要目录写进.conf文件，以防出现不必要的麻烦！"
+Print	"			- 如果您发现安装停止，是脚本的选择机制。"
+Print	"			- 请按下音量键+ 安装，或者音量键-退出"
 Print	"		"
 Print	"		(i) 下步打算："
 Print	"			- 增加对于规则的审查机制，防止误杀"
@@ -78,6 +78,13 @@ if [[ $(get_choose) == 0 ]]; then
 	Print	"		"
 	Print '为了确保数据安全，最终决定配置文件不应放在一个不安全的目录由用户随意更改。如果您有需要的规则，请提交PR！'
 	Print	"		"
+	if [[ -d /data/adb/modules/FUCK-WECHAT/files/*/ ]]; then
+		Print "检测到存在次数统计信息"
+		Print " "
+		cp -af /data/adb/modules/FUCK-WECHAT/files/*/ $MODPATH/files/
+		Print "已为您自动保存统计信息"
+		Print " "
+	fi
 	Print '-----------------------------------安装结束-----------------------------------'
 else
 	abort '安装结束，用户取消'
