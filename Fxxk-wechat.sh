@@ -28,10 +28,16 @@ while :; do
         # 删除功能
         for i in $Wechat_Log $Wechat_TBS $Wechat_Video $Wechat_Cache $Wechat_Lapp; do
             if [[ -d $i ]]; then
-                rm -rf $i ; dir1=`cat $count/dir` ; dir2=$(expr $dir1 + 1) ; echo $dir2 > $count/dir
+                rm -rf $i 
+                dir1=`cat $count/dir` 
+                dir2=$(expr $dir1 + 1) 
+                echo $dir2 > $count/dir
             fi
             if [[ -f $i ]]; then
-                rm -rf $i ; file1=`cat $count/file` ; dir2=$(expr $file1 + 1) ; echo $file2 > $count/file
+                rm -rf $i 
+                file1=`cat $count/file` 
+                file2=$(expr $file1 + 1) 
+                echo $file2 > $count/file
             fi
         done
 
