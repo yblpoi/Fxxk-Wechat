@@ -13,7 +13,7 @@ while :; do
     if [[ $(dumpsys window policy | grep "mInputRestricted" | cut -d= -f2) != "true" ]]; then
     
         # 读取配置文件
-        source $MODDIR/files/Fuck-WECHAT.conf
+        source $MODDIR/files/FUCK-WECHAT.conf
 
         # 统计功能
         count="$MODDIR/files/$(date "+%m-%d")"
