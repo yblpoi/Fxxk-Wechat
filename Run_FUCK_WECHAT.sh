@@ -12,7 +12,6 @@ PROCESS()
 }
 
 # 检测微信是否位于前台
-
 ACTIVITY() 
 {
 	dumpsys activity a | grep 'topResumedActivity' | grep 'com.tencent.mm' | wc -l

@@ -32,7 +32,7 @@ PROCESS()
 
 sdcard_rw
 
-[[ ! -f /sdcard/Android/FUCK-WECHAT.conf ]] && cp -af $MODDIR/files/FUCK-WECHAT.conf /sdcard/Android/
+# [[ ! -f /sdcard/Android/FUCK-WECHAT.conf ]] && cp -af $MODDIR/files/FUCK-WECHAT.conf /sdcard/Android/
 
 until [[ $(PROCESS) -ne 0 ]]; do
 	nohup sh $MODDIR/Run_FUCK_WECHAT.sh &

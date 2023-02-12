@@ -13,7 +13,7 @@ while :; do
     if [[ $(dumpsys window policy | grep "mInputRestricted" | cut -d= -f2) != "true" ]]; then
     
         # 读取配置文件
-        source /sdcard/Android/Fuck-WECHAT.conf
+        source $MODDIR/files/Fuck-WECHAT.conf
 
         # 统计功能
         count="$MODDIR/files/$(date "+%m-%d")"
@@ -40,15 +40,14 @@ while :; do
         cd $xlog_file
         mkdir -p xlog
         chattr -R -i xlog
-        rm -rf xlog
+        rm -rf xlog/*
         cd $MODDIR
 
         # 写入统计数据
         DIR=`cat $count/dir`
         FILE=`cat $count/file`
-        sed -i "/^description=/c description=清理某小龙的马，防止骨灰占据储存空间, [ 今日已清理：: $FILE吨骨灰 $DIR个骨灰盒 ]" "$MODDIR/module.prop"
+        sed -i "/^description=/c description=由于脚本处于Alpha开发阶段，可能更新比较频繁，请关注更新动向！！！在亮屏解锁状态且微信处于后台时，清理某小龙的马。今日已清理： [ 今日已清理：: $FILE个文件 $DIR个文件夹 ]" "$MODDIR/module.prop"
 
     fi
-    # 任务执行完毕，睡觉。
-    sleep 300
+    sleep 10
 done
