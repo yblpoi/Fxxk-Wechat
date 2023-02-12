@@ -48,6 +48,7 @@ jobs:
           echo 'Start Build Module'
           zip -r love-wechat.zip * -x '*.md' 
           Get_Version=$(cat module.prop | grep "version" | grep -v "versionCode" | cut -f2 -d"=" )
+          sed -i 1a"\**当前版本号：$Get_Version**" UPDATE.md
           echo "MODULE_VERSION=$Get_Version" >> $GITHUB_ENV
           echo "status=success" >> $GITHUB_OUTPUT
 
@@ -66,5 +67,5 @@ jobs:
         with:
           name: ${{ env.OPNAME }}
           tag_name: ${{ steps.tag.outputs.release_tag }}
-          body_path: /workdir/Fxxk-Wechat/update.md
+          body_path: /workdir/Fxxk-Wechat/UPDATE.md
           files: /workdir/Fxxk-Wechat/*.zip
