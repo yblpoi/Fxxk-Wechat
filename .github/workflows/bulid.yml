@@ -15,7 +15,6 @@ env:
   REPO_BRANCH: main
   UPLOAD_MODULE: true
   UPLOAD_RELEASE: true
-  MODULE_NAME: love-wechat
   TZ: Asia/Shanghai
 
 jobs:
@@ -45,6 +44,8 @@ jobs:
         run: |
           git clone $REPO_URL -b $REPO_BRANCH Fxxk-Wechat
           ln -sf /workdir/Fxxk-Wechat $GITHUB_WORKSPACE/Fxxk-Wechat
+          mkdir -p /output
+          ln -sf /workdir/output $GITHUB_WORKSPACE/output
 
       - name: SSH connection to Actions
         uses: P3TERX/ssh2actions@v1.0.0
@@ -56,7 +57,8 @@ jobs:
         run: |
           cd Fxxk-Wechat
           echo 'Start Build Module'
-          zip -r ${{ env.MODULE_NAME }}.zip * -x './fuck-wechat.code-workspace' -x '*.md' 
+          zip -r love-wechat.zip * -x '*.md' 
+          cp *.zip $GITHUB_WORKSPACE/output
           Get_Version=$(cat module.prop | grep "version" | grep -v "versionCode" | cut -f2 -d"=" )
           echo "MODULE_VERSION=$Get_Version" >> $GITHUB_ENV
           echo "status=success" >> $GITHUB_OUTPUT
@@ -65,9 +67,7 @@ jobs:
         id: organize
         if: steps.organize.outputs.status == 'success' && env.UPLOAD_MODULE == 'true'
         run: |
-          cd Fxxk-Wechat
-          echo "MODDIR=$PWD" >> $GITHUB_ENV
-          tree ${{ env.MODDIR }}
+          echo "MOD_DIR=$GITHUB_WORKSPACE/output" >> $GITHUB_ENV
           echo "status=success" >> $GITHUB_OUTPUT
 
       - name: Upload Module
@@ -75,7 +75,7 @@ jobs:
         if: steps.organize.outputs.status == 'success' && !cancelled()
         with:
           name: Fxxk-Wechat${{ env.MODULE_VERSION }}
-          path: ${{ env.MODDIR }}
+          path: ${{ env.MOD_DIR }}
 
       - name: Generate release tag
         id: tag
@@ -94,4 +94,4 @@ jobs:
           name: ${{ env.OPNAME }}
           tag_name: ${{ steps.tag.outputs.release_tag }}
           body_path: release.txt
-          files: ${{ env.MODDIR }}/*
+          files: ${{ env.MOD_DIR }}/*
