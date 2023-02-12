@@ -41,7 +41,7 @@ jobs:
         uses: peter-evans/repository-dispatch@v2
         with:
           token: ${{ secrets.FUCK_WECHAT_TOKEN }}
-          event-type: Source Code Update
+          event-type: Upgrade Module Version 
 
       - name: Delete workflow runs
         uses: GitRML/delete-workflow-runs@main
