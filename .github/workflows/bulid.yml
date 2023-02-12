@@ -44,7 +44,7 @@ jobs:
         run: |
           git clone $REPO_URL -b $REPO_BRANCH Fxxk-Wechat
           ln -sf /workdir/Fxxk-Wechat $GITHUB_WORKSPACE/Fxxk-Wechat
-          mkdir -p /output
+          mkdir -p output
           ln -sf /workdir/output $GITHUB_WORKSPACE/output
 
       - name: SSH connection to Actions
@@ -72,7 +72,7 @@ jobs:
 
       - name: Upload Module
         uses: actions/upload-artifact@main
-        if: steps.organize.outputs.status == 'success' && !cancelled()
+        if: steps.organize.outputs.status == 'success' && env.UPLOAD_MODULE == 'true'
         with:
           name: Fxxk-Wechat${{ env.MODULE_VERSION }}
           path: ${{ env.MOD_DIR }}
