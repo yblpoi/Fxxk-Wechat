@@ -1,0 +1,97 @@
+name: Bulid Module
+
+on:
+  repository_dispatch:
+  workflow_dispatch:
+    inputs:
+      ssh:
+        description:  'SSH connection to Action'
+        required: false
+        default: 'false'
+
+env:
+  OPNAME: 'Fxxk Wechat Module'
+  REPO_URL: https://github.com/yblpoi/Fxxk-Wechat.git
+  REPO_BRANCH: main
+  UPLOAD_MODULE: true
+  UPLOAD_RELEASE: true
+  MODULE_NAME: love-wechat
+  TZ: Asia/Shanghai
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main
+
+      - name: Initialization environment
+        env: 
+          DEBIAN_FRONTEND: noninteractive
+        run: |
+          sudo rm -rf /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /opt/ghc
+          sudo sed -i 's@//.*archive.ubuntu.com@//mirrors.ustc.edu.cn@g' /etc/apt/sources.list
+          sudo -E apt-get -qq update
+          sudo -E apt-get -qq install git bzip2 unzip zip p7zip p7zip-full
+          sudo -E apt-get -qq autoremove --purge
+          sudo -E apt-get -qq clean
+          sudo timedatectl set-timezone "$TZ"
+          sudo mkdir -p /workdir
+          sudo chown $USER:$GROUPS /workdir
+
+      - name: Clone Source Code
+        working-directory: /workdir
+        run: |
+          git clone $REPO_URL -b $REPO_BRANCH Fxxk-Wechat
+          ln -sf /workdir/Fxxk-Wechat $GITHUB_WORKSPACE/Fxxk-Wechat
+
+      - name: SSH connection to Actions
+        uses: P3TERX/ssh2actions@v1.0.0
+        if: (github.event.inputs.ssh == 'true' && github.event.inputs.ssh  != 'false') || contains(github.event.action, 'ssh')
+
+
+      - name: Bulid Module
+        id: Bulid
+        run: |
+          cd Fxxk-Wechat
+          mkdir -p ./bin
+          echo 'Start Build Module'
+          zip -r ./bin/${{ env.MODULE_NAME }}.zip * -x './fuck-wechat.code-workspace' -x '*.md' 
+          Get_Version=$(cat module.prop | grep "version" | grep -v "versionCode" | cut -f2 -d"=" )
+          echo "MODULE_VERSION=$Get_Version" >> $GITHUB_ENV
+          echo "status=success" >> $GITHUB_OUTPUT
+
+      - name: Organize files
+        id: organize
+        if: steps.organize.outputs.status == 'success' && env.UPLOAD_MODULE == 'true'
+        run: |
+          cd Fxxk-Wechat/bin/
+          echo "MODDIR=$PWD" >> $GITHUB_ENV
+          echo "status=success" >> $GITHUB_OUTPUT
+
+      - name: Upload Module
+        uses: actions/upload-artifact@main
+        if: steps.organize.outputs.status == 'success' && !cancelled()
+        with:
+          name: Fxxk-Wechat${{ env.MODULE_VERSION }}
+          path: ${{ env.MODDIR }}
+
+      - name: Generate release tag
+        id: tag
+        if: env.UPLOAD_RELEASE == 'true' && !cancelled()
+        run: |
+          echo "release_tag=${{ env.MODULE_VERSION }}" >> $GITHUB_OUTPUT
+          touch release.txt
+          echo "status=success" >> $GITHUB_OUTPUT
+
+      - name: Upload Module to release
+        uses: softprops/action-gh-release@v1
+        if: steps.tag.outputs.status == 'success' && !cancelled()
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          name: ${{ env.OPNAME }}
+          tag_name: ${{ steps.tag.outputs.release_tag }}
+          body_path: release.txt
+          files: ${{ env.MODDIR }}/*
