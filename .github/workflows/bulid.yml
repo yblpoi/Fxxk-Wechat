@@ -55,9 +55,8 @@ jobs:
         id: Bulid
         run: |
           cd Fxxk-Wechat
-          mkdir -p ./bin
           echo 'Start Build Module'
-          zip -r ./bin/${{ env.MODULE_NAME }}.zip * -x './fuck-wechat.code-workspace' -x '*.md' 
+          zip -r ${{ env.MODULE_NAME }}.zip * -x './fuck-wechat.code-workspace' -x '*.md' 
           Get_Version=$(cat module.prop | grep "version" | grep -v "versionCode" | cut -f2 -d"=" )
           echo "MODULE_VERSION=$Get_Version" >> $GITHUB_ENV
           echo "status=success" >> $GITHUB_OUTPUT
@@ -66,7 +65,7 @@ jobs:
         id: organize
         if: steps.organize.outputs.status == 'success' && env.UPLOAD_MODULE == 'true'
         run: |
-          cd Fxxk-Wechat/bin/
+          cd Fxxk-Wechat
           echo "MODDIR=$PWD" >> $GITHUB_ENV
           echo "status=success" >> $GITHUB_OUTPUT
 
@@ -89,7 +88,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         if: steps.tag.outputs.status == 'success' && !cancelled()
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.FUCK_WECHAT_TOKEN }}
         with:
           name: ${{ env.OPNAME }}
           tag_name: ${{ steps.tag.outputs.release_tag }}
