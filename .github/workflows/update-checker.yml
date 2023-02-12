@@ -40,7 +40,7 @@ jobs:
         if: steps.cacheHash.outputs.cache-hit != 'true'
         uses: peter-evans/repository-dispatch@v2
         with:
-          token: ${{ secrets.GITHUB_SECRETS_TOKEN }}
+          token: ${{ secrets.FUCK_WECHAT_TOKEN }}
           event-type: Source Code Update
 
       - name: Delete workflow runs
