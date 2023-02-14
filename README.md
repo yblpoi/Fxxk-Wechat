@@ -1,6 +1,6 @@
 # Fxxk-Wechat
 
-![GitHub repo file count](https://img.shields.io/github/directory-file-count/yblpoi/Fxxk-Wechat)![GitHub release (latest by date)](https://img.shields.io/github/v/release/yblpoi/Fxxk-Wechat)![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/yblpoi/Fxxk-Wechat/bulid.yml)![GitHub last commit](https://img.shields.io/github/last-commit/yblpoi/Fxxk-Wechat)![GitHub](https://img.shields.io/github/license/yblpoi/Fxxk-Wechat)![GitHub all releases](https://img.shields.io/github/downloads/yblpoi/Fxxk-Wechat/total)
+![GitHub repo file count](https://img.shields.io/github/directory-file-count/yblpoi/Fxxk-Wechat)![GitHub release (latest by date)](https://img.shields.io/github/v/release/yblpoi/Fxxk-Wechat)![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/yblpoi/Fxxk-Wechat/bulid.yml)![GitHub last commit](https://img.shields.io/github/last-commit/yblpoi/Fxxk-Wechat)![GitHub all releases](https://img.shields.io/github/downloads/yblpoi/Fxxk-Wechat/total)
 
 一个简单粗暴的安卓[**Magisk**](https://github.com/topjohnwu/Magisk)模块。用于清理某个特别好用的国民级聊天软件。
 
