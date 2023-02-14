@@ -1,13 +1,11 @@
 name: Bulid Module
 
 on:
-  repository_dispatch:
-  workflow_dispatch:
-    inputs:
-      ssh:
-        description:  'SSH connection to Action'
-        required: false
-        default: 'false'
+  push:
+    branches:
+      - "main"
+    paths:
+      - "module.prop"
 
 env:
   OPNAME: 'Fxxk Wechat Module'
@@ -46,8 +44,8 @@ jobs:
         run: |
           cd Fxxk-Wechat
           echo 'Start Build Module'
-          zip -r love-wechat.zip * -x '*.md' 
           Get_Version=$(cat module.prop | grep "version" | grep -v "versionCode" | cut -f2 -d"=" )
+          zip -r Fxxk-Wechat-$Get_Version.zip * -x '*.md' 
           sed -i 1a"\**当前版本号：$Get_Version**" UPDATE.md
           echo "MODULE_VERSION=$Get_Version" >> $GITHUB_ENV
           echo "status=success" >> $GITHUB_OUTPUT

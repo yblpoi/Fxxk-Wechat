@@ -26,7 +26,7 @@ Get_Version()
 Print() 
 {
 	echo "$@"
-	sleep 0.1
+	sleep 0.08
 }
 
 
@@ -48,9 +48,14 @@ Print	"		"
 Print	"		(✓) 当前版本：" $(Get_Version)
 Print	"		"
 Print	"		(✓) 实现功能："
-Print	"			- 亮屏且微信处于后台时，每10秒清理一次微信文件"
+Print	"			- 亮屏且微信处于后台时,清理微信文件"
 Print	"			- 对各种莫名其妙的缓存进行整理"
 Print	"			- 清理微信小程序缓存"
+Print	"		"
+Print	"		(!) 可能存在的BUG："
+Print	"			- 由于微信的储存机制非常的傻逼"
+Print	"			- 朋友圈的图片缓存到处都是"
+Print	"			- 可能导致朋友圈图片打不开（概率问题）"
 Print	"		"
 Print	"		(i) 温馨提醒："
 Print	"			- 配置文件位于：模块目录 /file/FUCK-WECHAT.conf，老配置文件目前已经不再使用"
@@ -62,7 +67,6 @@ Print	"		"
 Print	"		(i) 下步打算："
 Print	"			- 增加对于规则的审查机制，防止误杀"
 Print	"			- 完善配置目录，争取做到全覆盖"
-Print	"			- 目前项目处于Alpha阶段，会继续完善功能"
 Print	"		"
 Print	"		(?) 是否开始安装："
 Print	"			- 音量键+ ：安装"
