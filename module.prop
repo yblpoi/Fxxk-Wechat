@@ -1,6 +1,6 @@
 id=FUCK-WECHAT
 name=我爱你微信模块
-version=v1.1.1_20230213_Alpha
-versionCode=20230213
+version=v1.1.2_20230214_Stable
+versionCode=20230214
 author=poipoipoqioqioq
-description=由于脚本处于Alpha开发阶段，可能更新比较频繁，请关注更新动向！！！在亮屏解锁状态且微信处于后台时，清理某小龙的马。
+description=模块Stable（稳定）分支。在亮屏解锁状态且微信处于后台时，清理某小龙的马。

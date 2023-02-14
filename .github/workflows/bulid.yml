@@ -1,0 +1,84 @@
+name: Bulid Module
+
+on:
+  push:
+    branches:
+      - "stable"
+    paths:
+      - "module.prop"
+
+env:
+  OPNAME: 'Fxxk Wechat Module'
+  REPO_URL: https://github.com/yblpoi/Fxxk-Wechat.git
+  REPO_BRANCH: stable
+  UPLOAD_MODULE: true
+  UPLOAD_RELEASE: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main
+
+      - name: Initialization environment
+        env: 
+          DEBIAN_FRONTEND: noninteractive
+        run: |
+          sudo rm -rf /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /opt/ghc
+          sudo sed -i 's@//.*archive.ubuntu.com@//mirrors.ustc.edu.cn@g' /etc/apt/sources.list
+          sudo -E apt-get -qq update
+          sudo -E apt-get -qq install git bzip2 unzip zip
+          sudo mkdir -p /workdir
+          sudo chown $USER:$GROUPS /workdir
+
+      - name: Clone Source Code
+        working-directory: /workdir
+        run: |
+          git clone $REPO_URL -b $REPO_BRANCH Fxxk-Wechat
+          ln -sf /workdir/Fxxk-Wechat $GITHUB_WORKSPACE/Fxxk-Wechat
+
+      - name: Bulid Module
+        id: Bulid
+        run: |
+          cd Fxxk-Wechat
+          echo 'Start Build Module'
+          Get_Version=$(cat module.prop | grep "version" | grep -v "versionCode" | cut -f2 -d"=" )
+          zip -r Fxxk-Wechat-$Get_Version.zip * -x '*.md' 
+          sed -i 1a"\**当前版本号：$Get_Version**" UPDATE.md
+          echo "MODULE_VERSION=$Get_Version" >> $GITHUB_ENV
+          echo "status=success" >> $GITHUB_OUTPUT
+
+      - name: Generate release tag
+        id: tag
+        if: env.UPLOAD_RELEASE == 'true' && !cancelled()
+        run: |
+          echo "release_tag=${{ env.MODULE_VERSION }}" >> $GITHUB_OUTPUT
+          echo "status=success" >> $GITHUB_OUTPUT
+
+      - name: Upload Module to release
+        uses: softprops/action-gh-release@v1
+        if: steps.tag.outputs.status == 'success' && !cancelled()
+        env:
+          GITHUB_TOKEN: ${{ secrets.FUCK_WECHAT_TOKEN }}
+        with:
+          name: ${{ env.OPNAME }}
+          tag_name: ${{ steps.tag.outputs.release_tag }}
+          body_path: /workdir/Fxxk-Wechat/UPDATE.md
+          files: /workdir/Fxxk-Wechat/*.zip
+
+      - name: Delete workflow runs
+        uses: GitRML/delete-workflow-runs@main
+        with:
+          retain_days: 1
+          keep_minimum_runs: 1
+
+      - name: Remove old Releases
+        uses: dev-drprasad/delete-older-releases@v0.2.0
+        if: env.UPLOAD_RELEASE == 'true' && !cancelled()
+        with:
+          keep_latest: 5
+          delete_tags: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.FUCK_WECHAT_TOKEN }}

@@ -14,15 +14,19 @@ PROCESS()
 # 检测微信是否位于前台
 ACTIVITY() 
 {
-	dumpsys activity a | grep 'topResumedActivity' | grep 'com.tencent.mm' | wc -l
+	#dumpsys activity a | grep 'topResumedActivity' | grep 'com.tencent.mm' | wc -l  #方法失效
+	dumpsys window | grep mFocusedApp | grep 'com.tencent.mm' | wc -l
 }
 
 while :
 do
 	if [[ ! -f $MODDIR/disable ]]; then
 		if [[ $(PROCESS) -eq 0 ]]; then
+			# 前台判断
 			if [[ $(ACTIVITY) -eq 0 ]]; then 
 				nohup sh $MODDIR/Fxxk-wechat.sh &
+			else
+				kill -9 $(ps -ef | grep Fxxk-wechat.sh | grep -v grep | awk '{ print $2 }')
 			fi
 		fi
 	else
@@ -31,5 +35,5 @@ do
 			[[ $? == 0 ]] && sed -i "/^description=/c description=已手动停止运行 (重新打开则继续运行 无需重启)" "$MODDIR/module.prop"
 		fi
 	fi
-	sleep 5
+	sleep 10
 done
