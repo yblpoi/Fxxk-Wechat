@@ -1,6 +1,7 @@
 name: Bulid Module
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - "main"
