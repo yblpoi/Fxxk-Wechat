@@ -1,18 +1,18 @@
 # Fxxk-Wechat
 
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/yblpoi/Fxxk-Wechat)![](https://img.shields.io/github/downloads/yblpoi/Fxxk-Wechat/latest/total)
+![GitHub repo file count](https://img.shields.io/github/directory-file-count/yblpoi/Fxxk-Wechat)![GitHub release (latest by date)](https://img.shields.io/github/v/release/yblpoi/Fxxk-Wechat)![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/yblpoi/Fxxk-Wechat/bulid.yml)![GitHub last commit](https://img.shields.io/github/last-commit/yblpoi/Fxxk-Wechat)![GitHub](https://img.shields.io/github/license/yblpoi/Fxxk-Wechat)![GitHub all releases](https://img.shields.io/github/downloads/yblpoi/Fxxk-Wechat/total)
 
 一个简单粗暴的安卓[**Magisk**](https://github.com/topjohnwu/Magisk)模块。用于清理某个特别好用的国民级聊天软件。
 
-我不知道为什么一个功能单一的聊天软件，应用大小有**665MB**。在我登录两天左右，用户数据达到了惊人的**2.3GB**。
+一个功能单一的聊天软件，应用大小有**665MB**。在我登录两天左右，用户数据达到了惊人的**2.3GB**。
 
-查看了文件目录后，我恍然大悟。原来这玩意能把同一个东西来来回回存个好几遍。
+在研究了文件目录后，我恍然大悟。原来这玩意能把同一个东西来来回回存个好几遍。
 
-网上的各种帖子，都是某某手机清理大师的广告之类的，其实也没有啥作用。那些清理大师不过是广告大师换个皮而已。
+网上的各种帖子，大部分都是某某手机清理大师的广告之类的，其实也没有啥作用。那些清理大师大多是广告大师。
 
-用魔法对付魔法，用流氓对付流氓。
+因此用魔法对付魔法，用流氓对付流氓。
 
-**它不体面，所以我就帮他体面。**
+**它不体面，我就帮他体面。**
 
 ## 前排提醒
 
@@ -22,20 +22,24 @@
 
 由于咱并非计算机专业，如果在代码方面有任何优化的建议，也欢迎提交PR。
 
+应酷友要求，建立了聊天QQ群，群号：684657469，也可点击链接跳转加入：[![](https://pub.idqqimg.com/wpa/images/group.png)](https://qm.qq.com/cgi-bin/qm/qr?k=MRuXRY_eUr8W4EEpcjk23APBOLJNu-El&jump_from=webapi&authKey=6yWsmS5Ko4XlJ0q/E3YpaGdmFSI2JGv5qnnfAAazUtDd5hoW8bOAUdi8swg7KLET )
+
+
+
 ## 实现功能
 
 目前实现了以下功能：
 
 - 通过 `service.sh`监控手机是否处于亮屏状态。本模块只会在亮屏且解锁的状态下清理文件。
-- 通过**Magisk**控制模块的开关。除了第一次刷入，无需重启即可实现功能的调整。
-- 每5分钟运行一次清理，内容如下：
+- 通过**Magisk**控制模块的开关。除了刷入以及版本更新，无需重启即可实现功能的调整。
+- 清理内容如下：
   - 微信反复制造的缓存文件
   - 小程序缓存
   - 毫无卯月的直播数据
   - 微信获取的手机数据（包括且不限于电池、网络等等）
 - 同时尽量避开了聊天数据。在本人手机上测试时，并没有误杀。
 - 安装过程添加了后悔药。如果您在安装时决定放弃，可以按下**音量-**，取消安装。
-- 尽可能的表达了我对这款优秀聊天软件的赞赏。
+- 在自动打包时形成更新内容介绍。
 
 ## 使用方法
 
@@ -101,6 +105,24 @@
 - 安全性
 - 代码可读性
 
+### 项目WIKI
+
+- 国内访问：个人博客（建设中）
+- 全局访问：Github（新建文件夹）
+
+## 更新内容
+
+- Beta版请看[更新文档](https://github.com/yblpoi/Fxxk-Wechat/blob/main/UPDATE.md)
+- Stable版请看[更新文档](https://github.com/yblpoi/Fxxk-Wechat/blob/stable/UPDATE.md)
+
+## 分支说明
+
+本模块由2023年2月14日结束Alpha测试阶段，为了方便控制版本，接下来的更新将会分为两个分支。
+
+位于本仓库[Main](https://github.com/yblpoi/Fxxk-Wechat/tree/main)分支的，是所谓Beta版本。用于最新功能的测试和开发。比如对于其他腾讯系软件的支持。
+
+位于本仓库[Stable](https://github.com/yblpoi/Fxxk-Wechat/tree/stable)分支的，是模块的稳定版本。删除的策略不像Beta版那么激进，是为了确保安全稳定开发的版本。通常来讲，会滞后于Beta版本的发布与更新。
+
 ## 特别鸣谢
 
 已经退出酷安的阿巴酱。本模块很大程度上源于对他模块的定制。是他的模块为我打开了开发的思路，解决了很多棘手的难题。本模块许多关键的部分使用的是他的源码。可惜的是我并没有找到他的项目，因此目前没法贴上链接。
@@ -110,8 +132,6 @@
 请原谅我在README中写作文。
 
 刷机的时代已经过去了，互联网精神的时代过去了。
-
-但是刷机的精神、互联网开放、平等、协作、快速、共享的精神，一直激励着我完成这个模块。
 
 现在的某些东西，满口都是仁义道德，一肚子男盗女娼。别人以顾客为上帝，他却以顾客为奴隶。
 
