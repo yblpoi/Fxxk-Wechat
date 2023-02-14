@@ -8,7 +8,7 @@ on:
       - "module.prop"
 
 env:
-  OPNAME: 'Fxxk Wechat Module'
+  OPNAME: 'Fxxk Wechat Module Stable'
   REPO_URL: https://github.com/yblpoi/Fxxk-Wechat.git
   REPO_BRANCH: stable
   UPLOAD_MODULE: true
