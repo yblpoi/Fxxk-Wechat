@@ -62,8 +62,9 @@ jobs:
         if: steps.tag.outputs.status == 'success' && !cancelled()
         env:
           GITHUB_TOKEN: ${{ secrets.FUCK_WECHAT_TOKEN }}
-        with:
+        with: |
           name: ${{ env.OPNAME }}
           tag_name: ${{ steps.tag.outputs.release_tag }}
           body_path: /workdir/Fxxk-Wechat/UPDATE.md
           files: /workdir/Fxxk-Wechat/*.zip
+          prerelease: true
