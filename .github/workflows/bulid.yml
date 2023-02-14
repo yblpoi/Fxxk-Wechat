@@ -67,18 +67,3 @@ jobs:
           tag_name: ${{ steps.tag.outputs.release_tag }}
           body_path: /workdir/Fxxk-Wechat/UPDATE.md
           files: /workdir/Fxxk-Wechat/*.zip
-
-      - name: Delete workflow runs
-        uses: GitRML/delete-workflow-runs@main
-        with:
-          retain_days: 1
-          keep_minimum_runs: 1
-
-      - name: Remove old Releases
-        uses: dev-drprasad/delete-older-releases@v0.2.0
-        if: env.UPLOAD_RELEASE == 'true' && !cancelled()
-        with:
-          keep_latest: 5
-          delete_tags: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.FUCK_WECHAT_TOKEN }}
