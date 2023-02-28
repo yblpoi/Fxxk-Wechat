@@ -1,6 +1,6 @@
 id=FUCK-WECHAT
 name=我爱你微信模块
-version=v1.1.4_20230214_Beta
-versionCode=20230214
+version=v1.1.5_Beta
+versionCode=20230228
 author=poipoipoqioqioq
 description=模块Beta分支。部分策略较Stable激进。在亮屏解锁状态且微信处于后台时，清理某小龙的马。

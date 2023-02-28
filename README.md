@@ -6,31 +6,24 @@
 
 一个功能单一的聊天软件，应用大小有**665MB**。在我登录两天左右，用户数据达到了惊人的**2.3GB**。
 
-在研究了文件目录后，我恍然大悟。原来这玩意能把同一个东西来来回回存个好几遍。
-
-网上的各种帖子，大部分都是某某手机清理大师的广告之类的，其实也没有啥作用。那些清理大师大多是广告大师。
-
 因此用魔法对付魔法，用流氓对付流氓。
 
 **它不体面，我就帮他体面。**
 
 ## 前排提醒
 
-如果您使用的是尊贵的苹果，抑或是某些不主张用户刷机的品牌的手机。建议您停止阅读，因为这个模块和您没有任何的关系。也请您不要询问怎么给您的手机使用此模块。这样会导致时间的浪费。
+如果您使用的是尊贵的苹果，抑或是某些不主张用户刷机的品牌的手机。建议您停止阅读，因为这个模块和您没有任何的关系。也请您不要询问怎么给您的手机使用此模块。
 
 如果您了解安卓刷机，或者已经享受刷机带来的乐趣，那么欢迎您使用我的模块。也欢迎您[**创建议题**](https://github.com/yblpoi/Fxxk-Wechat/issues)，一起完善这个项目。
 
 由于咱并非计算机专业，如果在代码方面有任何优化的建议，也欢迎提交PR。
 
-应酷友要求，建立了聊天QQ群，群号：684657469，也可点击链接跳转加入：[![](https://pub.idqqimg.com/wpa/images/group.png)](https://qm.qq.com/cgi-bin/qm/qr?k=MRuXRY_eUr8W4EEpcjk23APBOLJNu-El&jump_from=webapi&authKey=6yWsmS5Ko4XlJ0q/E3YpaGdmFSI2JGv5qnnfAAazUtDd5hoW8bOAUdi8swg7KLET )
-
-
+应酷友要求，建立了聊天QQ群，群号：684657469，也可点击链接跳转加入：[![](https://pub.idqqimg.com/wpa/images/group.png)](https://qm.qq.com/cgi-bin/qm/qr?k=MRuXRY_eUr8W4EEpcjk23APBOLJNu-El&jump_from=webapi&authKey=6yWsmS5Ko4XlJ0q/E3YpaGdmFSI2JGv5qnnfAAazUtDd5hoW8bOAUdi8swg7KLET)
 
 ## 实现功能
 
 目前实现了以下功能：
 
-- 通过 `service.sh`监控手机是否处于亮屏状态。本模块只会在亮屏且解锁的状态下清理文件。
 - 通过**Magisk**控制模块的开关。除了刷入以及版本更新，无需重启即可实现功能的调整。
 - 清理内容如下：
   - 微信反复制造的缓存文件
@@ -119,22 +112,16 @@
 
 本模块由2023年2月14日结束Alpha测试阶段，为了方便控制版本，接下来的更新将会分为两个分支。
 
-位于本仓库[Main](https://github.com/yblpoi/Fxxk-Wechat/tree/main)分支的，是所谓Beta版本。用于最新功能的测试和开发。比如对于其他腾讯系软件的支持。
+位于本仓库[Main](https://github.com/yblpoi/Fxxk-Wechat/tree/main)分支的，是所谓Beta版本。用于最新功能的测试和开发。比如对于软件的支持。
 
-位于本仓库[Stable](https://github.com/yblpoi/Fxxk-Wechat/tree/stable)分支的，是模块的稳定版本。删除的策略不像Beta版那么激进，是为了确保安全稳定开发的版本。通常来讲，会滞后于Beta版本的发布与更新。
+位于本仓库[Stable](https://github.com/yblpoi/Fxxk-Wechat/tree/stable)分支的，是模块的稳定版本。策略不像Beta版那么激进，是为了确保安全稳定而开发的版本。通常来讲，会滞后于Beta版本的发布与更新。
 
 ## 特别鸣谢
 
 已经退出酷安的阿巴酱。本模块很大程度上源于对他模块的定制。是他的模块为我打开了开发的思路，解决了很多棘手的难题。本模块许多关键的部分使用的是他的源码。可惜的是我并没有找到他的项目，因此目前没法贴上链接。
 
-## 一些垃圾话
+## LICENSE
 
-请原谅我在README中写作文。
+本模块遵守GNU General Public License v3.0协议。
 
-刷机的时代已经过去了，互联网精神的时代过去了。
-
-现在的某些东西，满口都是仁义道德，一肚子男盗女娼。别人以顾客为上帝，他却以顾客为奴隶。
-
-现实世界太魔幻，某些东西捧着依托答辩，让另一些东西喂给每个人吃，还洋洋得意：看，我有这么多用户！看，我挣了那么多钱！
-
-呵呵
+应该没有人闲着没事干倒卖面具模块的吧？
