@@ -35,28 +35,34 @@ while :; do
 
         # 通过case分支判断目录是否安全
         # 删除功能
-		for i in $Wechat_Rules ; do
-			if [[ -d $i ]]; then
-				case $i in
-				"/data"|"/data/"|"/data/media/0"|"/data/media/0/"|"/data/media/0/Downloa"|"/data/media/0/Download/"|"/data/media/0/Android"|"/data/media/0/Android/"|"/sdcard"|"/sdcard/"|"/sdcard/Download"|"/sdcard/Download/"|"/sdcard/Android"|"/sdcard/Android/"|"/storage"|"/storage/"|"/storage/emulated/0"|"/storage/emulated/0/"|"/storage/emulated/0/Download"|"/storage/emulated/0/Download/"|"/storage/emulated/0/Android"|"/storage/emulated/0/Android/"|"/"|"/*")  (sed -i "/^description=/c description=！警告: 你填写了 $i ，触发停止运行！请删除后再打开模块继续运行！（无需重启）" "$MODDIR/module.prop" ; touch $MODDIR/disable ; exit 3 ) ;;
-				*)  (rm -rf $i ; dir1=`cat $count/dir` ; dir2=$(expr $dir1 + 1) ; echo $dir2 > $count/dir ) ;;
-				esac
-			fi
-			if [[ -f $i ]]; then
-				rm -rf $i ;
-                file1=`cat $count/file` 
-                file2=$(expr $file1 + 1) 
-                echo $file2 > $count/file
-			fi
-		done
-
-
-        # 重建xlog
-        xlog_file='/data/data/com.tencent.mm/files/'
-        cd $xlog_file
-        mkdir -p xlog
-        chattr -R -i xlog
-        cd $MODDIR
+        # 微信前台判断
+        if [[ $(dumpsys window | grep mFocusedApp | grep 'com.tencent.mm' | wc -l) == "0" ]]; then
+		    for i in $Wechat_Rules ; do
+		    	if [[ -d $i && $(du $i) != "4"  ]]; then
+		    		case $i in
+		    		    "/data"|"/data/"|"/data/media/0"|"/data/media/0/"|"/data/media/0/Downloa"|"/data/media/0/Download/"|"/data/media/0/Android"|"/data/media/0/Android/"|"/sdcard"|"/sdcard/"|"/sdcard/Download"|"/sdcard/Download/"|"/sdcard/Android"|"/sdcard/Android/"|"/storage"|"/storage/"|"/storage/emulated/0"|"/storage/emulated/0/"|"/storage/emulated/0/Download"|"/storage/emulated/0/Download/"|"/storage/emulated/0/Android"|"/storage/emulated/0/Android/"|"/"|"/*")  
+                            sed -i "/^description=/c description=！警告: 你填写了 $i ，触发停止运行！请删除后再打开模块继续运行！（无需重启）" "$MODDIR/module.prop" 
+                            touch $MODDIR/disable
+                            exit 3 
+                            ;;
+		    		    *)  
+                            rm -rf $i
+                            mkdir -p $i
+                            dir1=`cat $count/dir`
+                            dir2=$(expr $dir1 + 1)
+                            echo $dir2 > $count/dir
+                            ;;
+		    		esac
+		    	fi
+		    	if [[ -f $i && $(du $i) != "0" ]]; then
+		    		rm -rf $i
+                    touch $i
+                    file1=`cat $count/file` 
+                    file2=$(expr $file1 + 1) 
+                    echo $file2 > $count/file
+		    	fi
+		    done
+        fi
 
         # 写入统计数据
         DIR=`cat $count/dir`
@@ -64,5 +70,5 @@ while :; do
         sed -i "/^description=/c description=模块Beta分支。部分策略较Stable激进。在亮屏解锁状态且微信处于后台时，清理某小龙的马。[ 今日已清理: $FILE个文件 $DIR个文件夹 ]" "$MODDIR/module.prop"
 
     fi
-    sleep 3600
+    sleep 10
 done
