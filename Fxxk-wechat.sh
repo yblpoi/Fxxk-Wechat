@@ -38,7 +38,7 @@ while :; do
         # 微信前台判断
         if [[ $(dumpsys window | grep mFocusedApp | grep 'com.tencent.mm' | wc -l) == "0" ]]; then
 		    for i in $Wechat_Rules ; do
-		    	if [[ -d $i && $(du $i) != "4"  ]]; then
+		    	if [[ -d $i && $(du $i | cut -f1 ) != "4"  ]]; then
 		    		case $i in
 		    		    "/data"|"/data/"|"/data/media/0"|"/data/media/0/"|"/data/media/0/Downloa"|"/data/media/0/Download/"|"/data/media/0/Android"|"/data/media/0/Android/"|"/sdcard"|"/sdcard/"|"/sdcard/Download"|"/sdcard/Download/"|"/sdcard/Android"|"/sdcard/Android/"|"/storage"|"/storage/"|"/storage/emulated/0"|"/storage/emulated/0/"|"/storage/emulated/0/Download"|"/storage/emulated/0/Download/"|"/storage/emulated/0/Android"|"/storage/emulated/0/Android/"|"/"|"/*")  
                             sed -i "/^description=/c description=！警告: 你填写了 $i ，触发停止运行！请删除后再打开模块继续运行！（无需重启）" "$MODDIR/module.prop" 
@@ -54,7 +54,7 @@ while :; do
                             ;;
 		    		esac
 		    	fi
-		    	if [[ -f $i && $(du $i) != "0" ]]; then
+		    	if [[ -f $i && $(du $i | cut -f1 ) != "0" ]]; then
 		    		rm -rf $i
                     touch $i
                     file1=`cat $count/file` 
